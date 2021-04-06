@@ -1,5 +1,7 @@
 **Aplicação de Teste**
 
+O projeto se trata de uma aplicação usada como teste de técnico de proficiência em desenvolvimento Java utilizando o framework Springboot
+
 Para executar a aplicação, é necessário ter a JDK 1.8.0_261 ou versões posteriores instaladas em sua máquina.
 
 O teste, compilação e execução da aplicação pode ser feito por linhas de comando do Maven.
