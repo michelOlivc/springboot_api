@@ -1,0 +1,292 @@
+{
+	"info": {
+		"_postman_id": "01b905f7-b065-4a1a-96ec-39698e2d8aa5",
+		"name": "postman_collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Salvar usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var responseJSON;\r",
+							"\r",
+							"try {\r",
+							"    responseJSON = JSON.parse(responseBody);\r",
+							"} \r",
+							"catch(e) {}\r",
+							"\r",
+							"tests[\"O status code é 200\"] = responseCode.code === 200\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Cloud Strife\",\r\n    \"email\": \"cs@squarenix.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/usuario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar todos os usuários",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"O status code é 200\"] = responseCode.code === 200"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/usuario",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar um usuário pelo id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var responseJSON;\r",
+							"\r",
+							"try {\r",
+							"    responseJSON = JSON.parse(responseBody);\r",
+							"} \r",
+							"catch(e) {}\r",
+							"\r",
+							"\r",
+							"tests[\"O status code é 200\"] = responseCode.code === 200\r",
+							"tests[\"O id do usuário é o mesmo informado na url\"] = responseJSON.id !== null && responseJSON.id === 1;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/usuario/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuario",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alterar um usuário pelo id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var responseJSON;\r",
+							"\r",
+							"try {\r",
+							"    responseJSON = JSON.parse(responseBody);\r",
+							"} \r",
+							"catch(e) {}\r",
+							"\r",
+							"tests[\"O status code é 200.\"] = responseCode.code === 200\r",
+							"tests[\"O usuario com o id informado foi encontrado e alterado.\"] = responseCode.code === 200 && responseJSON !== null;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Sephiroth\",\r\n    \"email\": \"sephiroth@shinra.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/usuario/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuario",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Excluir um usuário pelo id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"O status code é 200\"] = responseCode.code === 200"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/usuario/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuario",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Calcular dígito único",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var result;\r",
+							"\r",
+							"try {\r",
+							"    result = JSON.parse(responseBody);\r",
+							"} catch(e) {}\r",
+							"\r",
+							"tests[\"O status code é 200\"] = responseCode.code === 200\r",
+							"tests[\"O dígito único foi calculado com sucesso\"] = responseCode.code === 200 && typeof result === \"number\""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/digitounico?numero=8843&iteracoes=5&email=zackfair@squarenix.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"digitounico"
+					],
+					"query": [
+						{
+							"key": "numero",
+							"value": "8843"
+						},
+						{
+							"key": "iteracoes",
+							"value": "5"
+						},
+						{
+							"key": "email",
+							"value": "zackfair@squarenix.com"
+						}
+					]
+				},
+				"description": "Calcula o dígito único, informando por parâmetro opcionalmente o email do usuário. Caso o email seja preenchido e tenha um usuário correspondente, o cálculo é salvo no histórico do mesmo e guardado em cache. Caso o email não esteja preenchido ou não exista um usuário com o email, apenas retorna o resultado e o guarda em cache."
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar histórico por id ou email do usuário",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"O status code é 200\"] = responseCode.code === 200"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/digitounico/all/byUser?email=zackfair@squarenix.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"digitounico",
+						"all",
+						"byUser"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "zackfair@squarenix.com"
+						}
+					]
+				},
+				"description": "Retorna o histórico de cálculos de dígito único do usuário. Caso o id seja informado, produra os registros pelo id. Caso o email seja informado e o id não, produra os registros por email. Caso nenhum deles seja informado, retorna um array vazio."
+			},
+			"response": []
+		}
+	]
+}
